@@ -296,8 +296,8 @@ static const struct dma_buf_ops cma_heap_buf_ops = {
 
 static struct dma_buf *cma_heap_do_allocate(struct dma_heap *heap,
 					 unsigned long len,
-					 unsigned long fd_flags,
-					 unsigned long heap_flags,
+					 u32 fd_flags,
+					 u64 heap_flags,
 					 bool uncached)
 {
 	struct cma_heap *cma_heap = dma_heap_get_drvdata(heap);
@@ -403,16 +403,16 @@ free_buffer:
 
 static struct dma_buf *cma_heap_allocate(struct dma_heap *heap,
 				  unsigned long len,
-				  unsigned long fd_flags,
-				  unsigned long heap_flags)
+				  u32 fd_flags,
+				  u64 heap_flags)
 {
 	return cma_heap_do_allocate(heap, len, fd_flags, heap_flags, false);
 }
 
 static struct dma_buf *cma_uncached_heap_allocate(struct dma_heap *heap,
 				  unsigned long len,
-				  unsigned long fd_flags,
-				  unsigned long heap_flags)
+				  u32 fd_flags,
+				  u64 heap_flags)
 {
 	return cma_heap_do_allocate(heap, len, fd_flags, heap_flags, true);
 }
@@ -420,8 +420,8 @@ static struct dma_buf *cma_uncached_heap_allocate(struct dma_heap *heap,
 /* Dummy function to be used until we can call coerce_mask_and_coherent */
 static struct dma_buf *cma_uncached_heap_not_initialized(struct dma_heap *heap,
 						unsigned long len,
-						unsigned long fd_flags,
-						unsigned long heap_flags)
+						u32 fd_flags,
+						u64 heap_flags)
 {
 	return ERR_PTR(-EBUSY);
 }
