@@ -393,7 +393,7 @@ include $(srctree)/scripts/subarch.include
 ARCH		?= $(SUBARCH)
 
 ARCH = arm
-CROSS_COMPILE = /usr/bin/arm-linux-gnueabi-
+CROSS_COMPILE = /usr/bin/arm-linux-gnueabihf-
 
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)
