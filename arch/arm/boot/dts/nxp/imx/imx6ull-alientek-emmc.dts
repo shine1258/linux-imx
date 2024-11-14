@@ -105,3 +105,25 @@
 	phy-reset-duration = <200>;
 	phy-reset-post-delay = <200>;
 };
+
+/* 添加UART3引脚复用 */
+&iomuxc {
+	pinctrl_uart3: uart3grp {
+		fsl,pins = <
+			MX6UL_PAD_UART3_RX_DATA__UART3_DCE_RX 0x1b0b1
+			MX6UL_PAD_UART3_TX_DATA__UART3_DCE_TX 0x1b0b1
+		>;
+	};
+};
+
+/* 移除uart2对uart3引脚的占用 */
+&uart2 {
+	/delete-property/ pinctrl-0;
+};
+
+/* 添加uart3 */
+&uart3 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart3>;
+	status = "okay";
+};
