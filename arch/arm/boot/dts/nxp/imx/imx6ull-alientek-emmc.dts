@@ -155,6 +155,17 @@
 	>;
 };
 
+&reg_sd1_vmmc {
+	/delete-property/ gpio;
+};
+
+&reg_sd1_vmmc {
+	/delete-property/ gpio;
+};
+
+/* 移除多余的设备 */
+/delete-node/ &tsc;
+
 /* 添加触摸屏 */
 &i2c2 {
 	gt911: gt911@14 {
@@ -164,8 +175,9 @@
 		pinctrl-0 = <&pinctrl_tsc &pinctrl_tsc_reset>;
 		interrupt-parent = <&gpio1>;
 		interrupts = <9 IRQ_TYPE_NONE>;
-		reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
 		interrupt-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
+		// irq-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
+		reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
 		status = "okay";
 	};
 };
