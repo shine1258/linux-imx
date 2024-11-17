@@ -168,15 +168,14 @@
 
 /* 添加触摸屏 */
 &i2c2 {
-	gt911: gt911@14 {
+	gt911: gt911@5d {
 		compatible = "goodix,gt911";
-		reg = <0x14>;
+		reg = <0x5d>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_tsc &pinctrl_tsc_reset>;
 		interrupt-parent = <&gpio1>;
 		interrupts = <9 IRQ_TYPE_NONE>;
-		interrupt-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
-		// irq-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
+		irq-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
 		reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
 		status = "okay";
 	};
